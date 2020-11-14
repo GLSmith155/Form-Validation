@@ -1,2 +1,2 @@
 # Form-Validation
-A form validator using JavaScript?
+A form validator using JavaScript
