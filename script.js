@@ -49,6 +49,15 @@ function checkLength(input, min, max) {
         showSuccess(input);
     }
 }
+// Check password uniqueness (1 number, 1 letter, and special charaters may be used.)
+function checkPassword(input) { 
+    const re = /^(?=.*[A-Za-z])(?=.*\d)[a-zA-Z0-9!@#$%^&*()~¥=_+}{":;'?/>.<,`\-\|\[\]]{6,25}$/
+    if(re.test(input.value.trim())) {
+        showSuccess(input);
+    } else {
+        showError(input, `${getFieldName(input)} must have at least 1 letter and 1 number`);
+    }
+  }
 
 // Check passwords match
 function checkPasswordsMatch(input1, input2) {
@@ -66,9 +75,9 @@ function getFieldName(input) {
 form.addEventListener('submit', function(e) {
     e.preventDefault();
 
-    checkRequired([username, email, password, password2]);
+    checkRequired([username, email, password, confirmation]);
     checkLength(username, 3, 15);
-    checkLength(password, 6, 25);
     checkEmail(email);
-    checkPasswordsMatch(password, password2);
+    checkPassword(password);
+    checkPasswordsMatch(password, confirmation);
 });
